@@ -1,0 +1,28 @@
+[core]
+	editor = vim
+[user]
+	name = Brad Campbell
+	email = bradjc5@gmail.com
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log -p
+	switch = !legit switch \"$@\"
+	branches = !legit branches
+	sprout = !legit sprout \"$@\"
+	unpublish = !legit unpublish \"$@\"
+	harvest = !legit harvest \"$@\"
+	sync = !legit sync \"$@\"
+	publish = !legit publish \"$@\"
+	graft = !legit graft \"$@\"
+	update-all = "!bash -c \"find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} fetch --all \\; \""
+
+[push]
+	default = simple
+
+[color]
+	ui=auto
+
