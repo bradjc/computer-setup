@@ -10,6 +10,23 @@
 	co = checkout
 	df = diff
 	lg = log -p
+	cp = cherry-pick
+	# List all items in the stash
+	sl = stash list
+	# Shorthand for creating a branch and checking it out
+	cob = checkout -b
+	# Add all changes from to files already in the repo
+	addall = add -u
+	# See who has committed to the repo
+	who = shortlog -n -s --no-merges
+	# Remove useless branches
+	cbranch = !git remote | xargs git remote prune
+	# Display one line commit titles
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = !git ls --numstat
+	# List aliases
+	la = "!git config -l | grep alias | cut -c 7-"
+	# Legit commands
 	switch = !legit switch \"$@\"
 	branches = !legit branches
 	sprout = !legit sprout \"$@\"
@@ -18,7 +35,11 @@
 	sync = !legit sync \"$@\"
 	publish = !legit publish \"$@\"
 	graft = !legit graft \"$@\"
+	# Run `git fetch --all` in all sub directories that are git repos
 	update-all = "!bash -c \"find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} fetch --all \\; \""
+	# Stage all changes that are not just whitespace differences
+	addnw = !bash -c 'git diff -w --no-color "$@" | git apply --cached --ignore-whitespace' -
+	racist = !git addnw
 
 [push]
 	default = simple
