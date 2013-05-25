@@ -1,0 +1,26 @@
+alias beers=mspdebug
+alias ls="ls -lh --color"
+
+
+complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh
+
+function svn() {
+	case $* in
+		st ) shift l; command svn status | sort -k 2 ;;
+		up ) command svn --ignore-externals up ;;
+		* ) command svn "$@" ;;
+	esac
+}
+
+# Setup autojump
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && . ~/.autojump/etc/profile.d/autojump.sh
+
+# Setup powerline-bash
+function _update_ps1() {
+	export PS1="$(~/git/powerline-bash/powerline-bash.py $? --width ${COLUMNS})"
+}
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} _update_ps1"
+
+function grepr() {
+	command grep -rn --color $* ./*
+}
