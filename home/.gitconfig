@@ -36,7 +36,7 @@
 	publish = !legit publish \"$@\"
 	graft = !legit graft \"$@\"
 	# Run `git fetch --all` in all sub directories that are git repos
-	update-all = "!bash -c \"find . -type d -depth 1 -exec git --git-dir={}/.git --work-tree=$PWD/{} fetch --all \\; \""
+	update-all = "!bash -c \"find . -maxdepth 1 -type d -exec git --git-dir={}/.git --work-tree=$PWD/{} fetch --all \\; \""
 	# Stage all changes that are not just whitespace differences
 	addnw = !bash -c 'git diff -w --no-color "$@" | git apply --cached --ignore-whitespace' -
 	racist = !git addnw

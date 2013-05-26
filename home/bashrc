@@ -6,7 +6,7 @@ complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))
 
 function svn() {
 	case $* in
-		st ) shift l; command svn status | sort -k 2 ;;
+		st ) shift 1; command svn status | sort -k 2 ;;
 		up ) command svn --ignore-externals up ;;
 		* ) command svn "$@" ;;
 	esac

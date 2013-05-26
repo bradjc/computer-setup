@@ -30,3 +30,5 @@ cmap Q q
 
 let g:tex_flavor = "latex"
 
+set rtp+=~/git/powerline/powerline/bindings/vim
+

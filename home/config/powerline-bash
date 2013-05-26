@@ -1,0 +1,16 @@
+{
+    "segments": {
+        "path":         [16, 254],
+        "cwd":          [16, 228],
+        "branch_clean": [26, 15],
+        "branch_dirty": [161, 15],
+        "cmd_passed":   [16, 222],
+        "cmd_failed":   [9, 16],
+        "svn_changes":  [26, 15],
+        "virtual_env":  [35, 254],
+		"hostname":     [235, 253]
+    },
+    "other": {
+        "separator": 240
+    }
+}
