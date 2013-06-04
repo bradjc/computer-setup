@@ -40,6 +40,8 @@
 	# Stage all changes that are not just whitespace differences
 	addnw = !bash -c 'git diff -w --no-color "$@" | git apply --cached --ignore-whitespace' -
 	racist = !git addnw
+	# Do an interactive rebase on all the commits on this branch
+	rebasebranch = ! bash -c 'git rebase -i HEAD~$(git rev-list $(git rev-parse --abbrev-ref HEAD)  ^master | wc -l)'
 
 [push]
 	default = simple
@@ -47,3 +49,5 @@
 [color]
 	ui=auto
 
+[init]
+	templatedir = ~/.config/git-template
