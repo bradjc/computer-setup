@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+
+import subprocess
+import sys
+
+try:
+	import github
+except:
+	print('post-checkout: Could not import the Github API python module.')
+	print('post-checkout: Please install https://github.com/jacquev6/PyGithub')
+	print('post-checkout: Usually: sudo pip install pygithub')
+	sys.exit(1)
+
+NULL_REF = '0'*40
+
+CMD_REMOTES = 'git remote -v'
+CMD_ADD_REMOTE = 'git remote add {} {}'
+
+if len(sys.argv) != 4:
+	print('post-checkout: The git API has changed and this hook needs to be updated.')
+	exit(1)
+
+ref1 = sys.argv[1]
+
+# Only run this commit hook when this is a clone operation
+if ref1 != NULL_REF:
+	sys.exit(0)
+
+# List the remotes attached to this repo by default
+remotes = subprocess.check_output(CMD_REMOTES.split())
+if 'github.com' not in remotes:
+	# Only run this script on github repos
+	sys.exit(0)
+
+# Determine the username and name of the repo
+for line in remotes.split('\n'):
+	if 'github.com' in line:
+		# Get everything after github.com (and skip the / or :)
+		remainder = line[line.find('github.com')+11:]
+		sp = remainder.split('/')
+		username = sp[0]
+
+		dotgit_idx = sp[1].rfind('.git')
+		reponame = sp[1][0:dotgit_idx]
+		break
+
+# Check if this repo is a fork of another github repo
+g = github.Github()
+try:
+	repo = g.get_repo('{}/{}'.format(username, reponame))
+	if not repo.fork:
+		sys.exit(0)
+
+	# Add the remote
+	parent_username = repo.parent.owner.login
+	remote_url = repo.parent.git_url
+	subprocess.call(CMD_ADD_REMOTE.format(parent_username, remote_url).split())
+
+except github.GithubException as e:
+	print('post-checkout: Github {} error: {}'.format(e.status, e.data))
+	sys.exit(1)
