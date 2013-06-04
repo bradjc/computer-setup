@@ -1,6 +1,8 @@
 alias beers=mspdebug
 alias ls="ls -lh --color"
-
+alias betterdd="sudo dcfldd"
+alias t="tar xf"
+alias sl=ls
 
 complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh
 
