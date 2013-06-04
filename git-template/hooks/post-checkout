@@ -1,5 +1,18 @@
 #!/usr/bin/env python
 
+"""
+When you clone a forked repository from github, this git hook automatically
+adds remotes to the parent repository. They name of the remote is the username
+of the parent repository owner.
+
+So, if you clone `https://github.com/you/repo`, which is a fork of
+`https://github.com/someoneelse/repo`, you will end up with the following
+remotes:
+
+someoneelse git://github.com/someoneelse/repo.git
+you         git://github.com/you/repo.git
+"""
+
 import subprocess
 import sys
 
