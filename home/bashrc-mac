@@ -1,45 +1,42 @@
-export PS1="\W \$ "
-
-
-##
-# Your previous /Users/bradjc/.bash_profile file was backed up as /Users/bradjc/.bash_profile.macports-saved_2011-12-12_at_13:45:08
-##
-
 # MacPorts Installer addition on 2011-12-12_at_13:45:08: adding an appropriate PATH variable for use with MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
-export PATH=/Users/bradjc/bin:$PATH
+# Bash completion
+if [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+  . /opt/local/etc/profile.d/bash_completion.sh
+fi
 
+# Configure version control
 export SVN_EDITOR=vim
 
-complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh
-
-alias ls="ls -lhG"
-alias du="du -h -d 1"
-
-export SHED_REPO=$HOME/svn/shed
-
 function svn() {
- case $* in
-  st ) shift 1; command svn status  | sort -k 2 ;;
-  * ) command svn "$@" ;;
- esac
+	case $* in
+		st ) shift 1; command svn status | sort -k 2 ;;
+		up ) command svn --ignore-externals up ;;
+		* ) command svn "$@" ;;
+	esac
 }
-
-function _update_ps1()
-{
-	export PS1="$(~/git/powerline-bash/powerline-bash.py $? --width ${COLUMNS})"
-}
-
-#export PROMPT_COMMAND="_update_ps1"
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} _update_ps1"
-
-if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
-	. /opt/local/etc/profile.d/autojump.sh
-fi
 
 source /usr/share/git-core/git-completion.bash
 
+# Easy ssh to common servers
+complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh
 
+# Command aliases
+alias ls="ls -lhG"
+alias du="du -h -d 1"
 
+# Powerline
+function _update_ps1() {
+	export PS1="$(~/git/powerline-bash/powerline-bash.py $? --width ${COLUMNS})"
+}
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} _update_ps1"
+
+# Autojump
+#if [ -f /opt/local/etc/profile.d/autojump.sh ]; then
+#	. /opt/local/etc/profile.d/autojump.sh
+#fi
+
+# Extended cd
+source ~/git/extended_cd/extended_cd.bashrc
