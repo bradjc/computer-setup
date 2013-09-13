@@ -26,3 +26,6 @@ export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} _update_ps1"
 function grepr() {
 	command grep -rn --color $* ./*
 }
+
+export SVN_EDITOR=vim
+

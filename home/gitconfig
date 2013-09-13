@@ -11,6 +11,8 @@
 	df = diff
 	lg = log -p
 	cp = cherry-pick
+	fa = fetch --all
+	nb = checkout -b
 	# List all items in the stash
 	sl = stash list
 	# Shorthand for creating a branch and checking it out
@@ -42,6 +44,8 @@
 	racist = !git addnw
 	# Do an interactive rebase on all the commits on this branch
 	rebasebranch = ! bash -c 'git rebase -i HEAD~$(git rev-list $(git rev-parse --abbrev-ref HEAD)  ^master | wc -l)'
+	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold red)%d%C(reset)' --all
+	oldest-ancestor = ! bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
 
 [push]
 	default = simple
