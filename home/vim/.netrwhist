@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/bradjc/git/tinyos-main/tools/tinyos/c/sf'
 let g:netrw_dirhist_2='/home/bradjc/git/raspberrypi-cc2520/tinyos/support/make/rpi'
 let g:netrw_dirhist_3='/home/bradjc/git/coilcube/tinyos/support/make/targets'
+let g:netrw_dirhist_4='/home/bradjc/shed/tinyos/apps/doorrfid/RpiDoorRfid'
