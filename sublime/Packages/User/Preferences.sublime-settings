@@ -1,0 +1,15 @@
+{
+	"close_windows_when_empty": true,
+	"color_scheme": "Packages/Color Scheme - Default/IDLE.tmTheme",
+	"copy_with_empty_selection": false,
+	"default_line_ending": "unix",
+	"font_size": 10,
+	"open_files_in_new_window": false,
+	"rulers":
+	[
+		80
+	],
+	"scroll_past_end": false,
+	"spell_check": true,
+	"trim_trailing_white_space_on_save": true
+}
