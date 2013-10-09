@@ -13,6 +13,7 @@
 	cp = cherry-pick
 	fa = fetch --all
 	nb = checkout -b
+	dw = diff -w
 	# List all items in the stash
 	sl = stash list
 	# Shorthand for creating a branch and checking it out
