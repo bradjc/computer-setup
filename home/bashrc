@@ -28,4 +28,5 @@ function grepr() {
 }
 
 export SVN_EDITOR=vim
+export GOPATH=$HOME/.go
 
