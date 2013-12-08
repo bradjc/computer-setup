@@ -3,7 +3,12 @@
 	"color_scheme": "Packages/Color Scheme - Default/IDLE.tmTheme",
 	"copy_with_empty_selection": false,
 	"default_line_ending": "unix",
-	"font_size": 10,
+	"font_size": 11,
+	"font_face": "Anonymous Pro",
+	"ignored_packages":
+	[
+		"Vintage"
+	],
 	"open_files_in_new_window": false,
 	"rulers":
 	[
