@@ -11,13 +11,13 @@
     // Put your custom syntax rules here:
     "syntaxes": [
         {
-            "name": "Makefile",
+            "name": "Makefile/Makefile",
             "rules": [
                 {"first_line": "\\#(.)*\\-Makefile\\-"}
             ]
         },
     	{
-			"name": "Perl",
+			"name": "Perl/Perl",
 			"rules": [
 				{"first_line": "(.)*perl(.)*"}
 			]

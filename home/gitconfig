@@ -5,6 +5,8 @@
 	email = bradjc5@gmail.com
 [alias]
 	st = status
+	tst = status  # because putting spaces in correctly is hard
+	itst = status # ditto
 	ci = commit
 	br = branch
 	co = checkout
@@ -47,6 +49,7 @@
 	rebasebranch = ! bash -c 'git rebase -i HEAD~$(git rev-list $(git rev-parse --abbrev-ref HEAD)  ^master | wc -l)'
 	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold red)%d%C(reset)' --all
 	oldest-ancestor = ! bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+	undo = reset --soft HEAD~1
 
 [push]
 	default = simple

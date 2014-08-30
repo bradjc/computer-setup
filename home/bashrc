@@ -3,6 +3,10 @@ alias ls="ls -lh --color"
 alias betterdd="sudo dcfldd"
 alias t="tar xf"
 alias sl=ls
+alias cp="cp -r"
+alias g="git"
+alias gi="git"
+alias serv="python3 -m http.server"
 
 complete -W "$(echo $(grep '^ssh ' ~/.bash_history | sort -u | sed 's/^ssh //'))" ssh
 
@@ -27,6 +31,10 @@ function grepr() {
 	command grep -rn --color $* ./*
 }
 
+function gc() {
+	command git clone git@github.com:labll/$*
+}
+
 export SVN_EDITOR=vim
 export GOPATH=$HOME/.go
-
+export PATH=$PATH:$HOME/shed/scripts

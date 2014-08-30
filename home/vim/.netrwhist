@@ -1,7 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/bradjc/git/tinyos-main/tools/tinyos/c/sf'
 let g:netrw_dirhist_2='/home/bradjc/git/raspberrypi-cc2520/tinyos/support/make/rpi'
 let g:netrw_dirhist_3='/home/bradjc/git/coilcube/tinyos/support/make/targets'
 let g:netrw_dirhist_4='/home/bradjc/shed/tinyos/apps/doorrfid/RpiDoorRfid'
 let g:netrw_dirhist_5='/home/bradjc/git/raspberrypi-cc2520/tinyos/apps/tests/BareReceive'
+let g:netrw_dirhist_6='/home/bradjc/git/hemera/tinyos/apps/HemeraSampler'
+let g:netrw_dirhist_7='/home/bradjc/git/eagle/.git'

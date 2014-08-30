@@ -1,10 +1,13 @@
 {
+	"caret_extra_bottom": 0,
+	"caret_extra_top": 0,
+	"caret_extra_width": 0,
 	"close_windows_when_empty": true,
-	"color_scheme": "Packages/Color Scheme - Default/IDLE.tmTheme",
+	"color_scheme": "Packages/User/textmate/Tomorrow.tmTheme",
 	"copy_with_empty_selection": false,
 	"default_line_ending": "unix",
-	"font_size": 11,
 	"font_face": "Anonymous Pro",
+	"font_size": 11,
 	"ignored_packages":
 	[
 		"Vintage"
@@ -15,6 +18,7 @@
 		80
 	],
 	"scroll_past_end": false,
+	"scroll_speed": 0,
 	"spell_check": true,
 	"trim_trailing_white_space_on_save": true
 }
