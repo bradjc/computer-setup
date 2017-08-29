@@ -3,6 +3,7 @@
 [user]
 	name = Brad Campbell
 	email = bradjc5@gmail.com
+	signingkey = 193B81D32F71325A
 [alias]
 	st = status
 	tst = status  # because putting spaces in correctly is hard
@@ -16,6 +17,7 @@
 	fa = fetch --all
 	nb = checkout -b
 	dw = diff -w
+	re = remote -v
 	# List all items in the stash
 	sl = stash list
 	# Shorthand for creating a branch and checking it out
@@ -50,6 +52,8 @@
 	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold red)%d%C(reset)' --all
 	oldest-ancestor = ! bash -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
 	undo = reset --soft HEAD~1
+	pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 
 [push]
 	default = simple
@@ -57,5 +61,5 @@
 [color]
 	ui=auto
 
-[init]
-	templatedir = ~/.config/git-template
+[commit]
+	gpgSign = true
