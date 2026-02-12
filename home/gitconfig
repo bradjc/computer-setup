@@ -9,6 +9,7 @@
 	tst = status  # because putting spaces in correctly is hard
 	itst = status # ditto
 	ci = commit
+	ca = commit --amend
 	br = branch
 	co = checkout
 	df = diff
@@ -29,7 +30,7 @@
 	# Remove useless branches
 	cbranch = !git remote | xargs git remote prune
 	# Display one line commit titles
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ls = log --pretty=format:"%C(yellow)%h\\ %Creset%s%Cblue\\ [%cn]%Cred%d" --decorate
 	ll = !git ls --numstat
 	# List aliases
 	la = "!git config -l | grep alias | cut -c 7-"
@@ -54,12 +55,26 @@
 	undo = reset --soft HEAD~1
 	pr  = "!f() { git fetch -fu ${2:-$(git remote |grep ^upstream || echo origin)} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 	pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+	co-clean = !bash -c 'git branch -D "$@" | git checkout "$@"' -
+	recent = !bash -c 'git for-each-ref --sort=-committerdate refs/heads/ | head -n10'
 
 [push]
 	default = simple
+	autoSetupRemote = true
 
 [color]
 	ui=auto
 
 [commit]
 	gpgSign = true
+[pr-release]
+	token = dfe1e769092ecdee44b2c9b7577b3b7f0be8bc7a
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
